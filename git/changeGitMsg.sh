@@ -3,7 +3,7 @@
 OLD_MAIL=""
 NEW_MAIL=""
 OLD_NAME=""
-#git update-ref -d refs/original/refs/heads/main    更新引用
+#git update-ref -d refs/original/refs/heads/main     更新引用
 git filter-branch --commit-filter '
         if [ "$GIT_AUTHOR_EMAIL" != "<$OLD_MAIL>" ];
         then
