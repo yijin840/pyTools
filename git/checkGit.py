@@ -14,5 +14,11 @@ if __name__ == "__main__":
     gcms = [s[:-1] for s in rev]
     for m in gcms:
         cat = cmd(cat_cmd + m)
-        for i in cat:
-            print(i)
+        cmt = [line.replace("\n","") for line in cat]
+        all_cmt = cmt[-1].split(r"\n")
+        for msg in all_cmt:
+            res = re.match(msg_reg, msg, flags=0)
+            if res != None:
+                print(res + " 通过检查")
+            else:
+                print(msg + " 不符合规范")
