@@ -50,7 +50,7 @@ if __name__ == "__main__":
     rev_cmd = "git rev-list --all"
     rev = cmd(rev_cmd)
     cat_cmd = "git cat-file -p "
-    # print(rev)
+    print(rev)
     gcms = [s[:-1] for s in rev]
     check(gcms)
     print("代码提交规范检查通过！")
