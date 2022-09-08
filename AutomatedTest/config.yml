@@ -1,0 +1,11 @@
+project_name: demo
+project_path: http://localhost:8078
+project_root_path: http://localhost:8078
+swagger_ui_html: /v2/api-docs
+api_data:
+  - /testNull
+headers:
+  Content-Type: application/json; charset=UTF-8
+  Connection: keep-alive
+  Accept: application/json, text/javascript, */*; q=0.01
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36
