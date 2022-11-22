@@ -16,3 +16,4 @@ def get_value(key, file_name):
         return value[list[-1]]
     except Exception as e:
         logging.error("get_value error, cause : " + traceback.format_exc())
+

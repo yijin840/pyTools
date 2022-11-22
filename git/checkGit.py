@@ -3,7 +3,7 @@
 from os import system
 import sys
 sys.path.insert(0, '..')
-from loadProperties import Properties
+from util.loadProperties import Properties
 from head.commonHead import *
 
 #不同的地方注释规范可能不一样

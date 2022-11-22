@@ -1,4 +1,4 @@
-from re import T
+from re import S, T
 import sys
 
 from PySide6.QtCore import Qt, QRect
@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
 
 
 def onClickButton():
+    
     print('按钮被按下')
 
 
@@ -27,7 +28,7 @@ class Window(QMainWindow):
 
         # 设置按钮上文本的字体类型（微软雅黑、宋体...）,尺寸大小，是否斜体
         font1 = QFont()
-        font1.setFamilies([u"Microsoft YaHei UI"])
+        font1.setFamilies([u"脖子"])
         font1.setPointSize(10)
         font1.setItalic(False)
 
@@ -43,7 +44,7 @@ class Window(QMainWindow):
         self.pushButton.setPalette(palette)
 
         # 设置按钮的文本/
-        self.pushButton.setText('按钮设置')
+        self.pushButton.setText('脖子')
         # 设置按钮的图标
         self.pushButton.setIcon(QIcon(r'C:\Users\15516\Desktop\testui\box-color.ico'))
 
