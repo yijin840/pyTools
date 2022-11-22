@@ -1,0 +1,2122 @@
+{
+    "/actuator": {
+        "get": {
+            "tags": [
+                "web-mvc-links-handler"
+            ],
+            "summary": "links",
+            "operationId": "linksUsingGET",
+            "produces": [
+                "application/vnd.spring-boot.actuator.v3+json",
+                "application/json",
+                "application/vnd.spring-boot.actuator.v2+json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/Link"
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/actuator/health": {
+        "get": {
+            "tags": [
+                "operation-handler"
+            ],
+            "summary": "handle",
+            "operationId": "handleUsingGET_1",
+            "produces": [
+                "application/vnd.spring-boot.actuator.v3+json",
+                "application/json",
+                "application/vnd.spring-boot.actuator.v2+json"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "body",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/actuator/health/**": {
+        "get": {
+            "tags": [
+                "operation-handler"
+            ],
+            "summary": "handle",
+            "operationId": "handleUsingGET",
+            "produces": [
+                "application/vnd.spring-boot.actuator.v3+json",
+                "application/json",
+                "application/vnd.spring-boot.actuator.v2+json"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "body",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/actuator/info": {
+        "get": {
+            "tags": [
+                "operation-handler"
+            ],
+            "summary": "handle",
+            "operationId": "handleUsingGET_2",
+            "produces": [
+                "application/vnd.spring-boot.actuator.v3+json",
+                "application/json",
+                "application/vnd.spring-boot.actuator.v2+json"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "body",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/batch": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "batchSaveData",
+            "operationId": "batchSaveDataUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/check": {
+        "get": {
+            "tags": [
+                "user-controller"
+            ],
+            "summary": "check",
+            "operationId": "checkUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "query",
+                    "description": "username",
+                    "required": false,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/error": {
+        "get": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "basic-error-controller"
+            ],
+            "summary": "error",
+            "operationId": "errorUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/excel/write": {
+        "get": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "excel-controller"
+            ],
+            "summary": "excelToData",
+            "operationId": "excelToDataUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/executeTask": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "测试线程池任务",
+            "description": "线程池任务",
+            "operationId": "testThreadPoolTaskUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/login": {
+        "get": {
+            "tags": [
+                "user-controller"
+            ],
+            "summary": "login",
+            "operationId": "loginUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "query",
+                    "description": "username",
+                    "required": false,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/logout": {
+        "get": {
+            "tags": [
+                "user-controller"
+            ],
+            "summary": "logout",
+            "operationId": "logoutUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "query",
+                    "description": "username",
+                    "required": false,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/oom": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "oom",
+            "operationId": "oomUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/redis/batchInsertData": {
+        "get": {
+            "tags": [
+                "redis-controller"
+            ],
+            "summary": "batchInsertData",
+            "operationId": "batchInsertDataUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/save": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "saveData",
+            "operationId": "saveDataUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/success": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "head": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingHEAD",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "post": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "put": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingPUT",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "delete": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingDELETE",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "options": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingOPTIONS",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "patch": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "checkSuccess",
+            "operationId": "checkSuccessUsingPATCH",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Response"
+                    }
+                },
+                "204": {
+                    "description": "No Content"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/testCachePool": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "testCache",
+            "operationId": "testCacheUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/testNull": {
+        "post": {
+            "tags": [
+                "web-params-controller"
+            ],
+            "summary": "testNull",
+            "operationId": "testNullUsingPOST",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "*/*"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "currency",
+                    "description": "currency",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/Currency"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "201": {
+                    "description": "Created"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    },
+    "/testPool": {
+        "get": {
+            "tags": [
+                "thread-pool-controller"
+            ],
+            "summary": "testPool",
+            "operationId": "testPoolUsingGET",
+            "produces": [
+                "*/*"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            },
+            "deprecated": false
+        },
+        "params": "",
+        "result": ""
+    }
+}

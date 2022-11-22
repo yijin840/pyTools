@@ -5,7 +5,6 @@ from PySide6.QtCore import Qt, QRect
 from PySide6.QtGui import QGuiApplication, QIcon, QPalette, QColor, QFont
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
 
-
 def onClickButton():
     
     print('按钮被按下')
@@ -15,8 +14,11 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.centralwidget = QWidget()
-
         self.pushButton = QPushButton(self.centralwidget)
+        dlg = QDialog(self)
+        dlg.setWindowTitle("HELLO!")
+        dlg.exec_()
+        
         self.init()
 
     def init(self):
@@ -43,8 +45,9 @@ class Window(QMainWindow):
         palette.setColor(QPalette.ButtonText, QColor(Qt.black))
         self.pushButton.setPalette(palette)
 
-        # 设置按钮的文本/
-        self.pushButton.setText('脖子')
+        # 设置按钮的文本/s
+
+        self.pushButton.setText('关闭端口')
         # 设置按钮的图标
         self.pushButton.setIcon(QIcon(r'C:\Users\15516\Desktop\testui\box-color.ico'))
 
