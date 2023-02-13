@@ -1,4 +1,4 @@
-
+# -*- coding:utf-8 -*-
 import paramiko
 from scp import SCPClient
 import sys
@@ -7,16 +7,16 @@ import sys
 class ssh_client(object):
     _ssh = paramiko.SSHClient()
     _java_path = ""
+
     def __init__(self, host, port, user, password):
         self._ssh.load_system_host_keys()
         self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         self._ssh.connect(hostname=host, port=port,
                           username=user, password=password)
 
-
     def set_java_path(self, path):
         self._java_path = path
-    
+
     def find_java_path(self):
         cmd = "bash -lc 'which java'"
         virtual_path = self.execute_cmd(cmd, get_pty=True, isPrint=False)
@@ -59,7 +59,7 @@ class ssh_client(object):
 
     def java_jstat_sync(self, pid):
         cmd = "%s/jstat -gcutil %s 5000 100" % str(self._java_path,
-            pid)
+                                                   pid)
         print("  %s     %s     %s      %s      %s     %s    %s     %s    %s    %s     %s   \n'" % ('幸存1区当前使用比例', '幸存2区当前使用比例',
                                                                                                    '伊甸园区使用比例', '老年代使用比例', '元数据区使用比例', '压缩使用比例', '年轻代垃圾回收次数', '年轻代垃圾回收消耗时间', '老年代垃圾回收次数', '老年代垃圾回收消耗时间', '垃圾回收消耗总时间'))
         return self.execute_cmd(cmd, sync=True)
@@ -82,7 +82,7 @@ class ssh_client(object):
         for i in result_stdout:
             if isPrint:
                 print(i.decode('utf-8', errors="ignore"), end="")
-            res.append(i.decode('utf-8', errors="ignore")[:-1])
+            res.append(str(i.decode('utf-8', errors="ignore")[:-1]))
         for i in result_stderr:
             if isPrint:
                 print(i.decode('utf-8', errors="ignore"), end="")
@@ -93,6 +93,8 @@ class ssh_client(object):
         stderr._set_mode("rb")
         for line in iter(lambda: stdout.readline(2048), ""):
             print(line.decode('utf-8', errors="ignore"), end="")
+            if line == "" or stdout.channel.exit_status_ready():
+                break
 
     '''
      1. get True 是 从服务器拿
@@ -107,3 +109,38 @@ class ssh_client(object):
         else:
             scp.put(files=origin, target=target)
         scp.close()
+
+    '''
+    b      块特殊文件（缓冲的）
+    c      字符特殊文件（无缓冲的）
+    d      目录
+    p      命名管道（FIFO）
+    f      常规文件
+    l      符号链接
+    s      套接字
+    '''
+
+    def find(self, file_name, type=None, dir="~", deep_path=None):
+        cmd = "find % s " % dir
+        if type != None:
+            cmd += " -type %s " % type
+        if deep_path != None:
+            cmd += " -maxdepth %s " % deep_path
+        cmd += " -name '%s' 2>/dev/null " % (file_name)
+        return self.execute_cmd(cmd, isPrint=False)
+
+    def nohup_execute(self, cmd, log_path=None):
+        if log_path != None:
+            cmd = "nohup %s > %s 2>&1 &" % (cmd, log_path)
+        return self.execute_cmd(cmd, isPrint=False)
+
+    def run_jmeter(self, jmx, jtl_path, jmeter_path):
+        cmd = "jmeter -n -t %s -l %s" % (jmx, jtl_path)
+        self.nohup_execute(cmd, jmeter_path)
+
+    def deploy_jar_project(self, jar, port, dir="~"):
+        self.copy_file(jar, dir)
+        # 端口必须得要，不然没办法启动起来
+        if port != None:
+            self.execute_cmd("kill -9 %s" % self.find_pid_by_port(port))
+        return self.nohup_execute("java -jar %s" % jar, dir=dir)
