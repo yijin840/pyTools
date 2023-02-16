@@ -34,13 +34,19 @@ class ssh_client(object):
         self._java_path = path
 
     # 查找Java路径
-    def find_java_path(self):
-        cmd = "bash -lc 'which java'"
+    def find_java_path(self, cmd="which java"):
         virtual_path = self.execute_cmd(cmd, get_pty=True, isPrint=False)
-        if len(virtual_path) == 1:
-            return virtual_path[0]
-        else:
+        fd = virtual_path[0].find("->")
+        if fd != -1:
+            virtual_path[0] = virtual_path[0][fd+3:] 
+        if len(virtual_path) == 0:
             return None
+        virtual_path[0] = virtual_path[0].strip('\r').strip(' ')
+        if virtual_path[0] == "/usr/bin/java" or virtual_path[0] == "/etc/alternatives/java":
+            return self.find_java_path("bash -lc 'ls -lrt " + virtual_path[0] + "'")
+        else:
+            return virtual_path[0]
+
     '''
         1. main_cmd: 主命令
         2. vl: 管道命令
@@ -50,6 +56,8 @@ class ssh_client(object):
     '''
 
     def execute_cmd(self, main_cmd, vl=[], hl=[], get_pty=False, isPrint=True, isPw=False):
+        if main_cmd == "" or main_cmd == None:
+            return
         if len(vl) != 0:
             for v in vl:
                 main_cmd = main_cmd + " | " + v
@@ -134,14 +142,14 @@ class ssh_client(object):
                 print(line.decode('utf-8', errors="ignore"), end="")
             res.append(str(line.decode('utf-8', errors="ignore")[:-1]))
             stdout.flush()
-            if line == "" or stdout.channel.exit_status_ready():
+            if not line:
                 break
-            
+
         for line in iter(lambda: stderr.readline(2048), ""):
             if isPrint:
                 print(line.decode('utf-8', errors="ignore"), end="")
             stderr.flush()
-            if line == "" or stderr.channel.exit_status_ready():
+            if not line:
                 break
         return res
 
