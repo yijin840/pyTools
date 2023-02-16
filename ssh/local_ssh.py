@@ -46,8 +46,7 @@ class ssh_client(object):
         2. vl: 管道命令
         3. hl: 逻辑命令
         4. get_pty: 是否开启新的终端，一般用于top这种需要持续输出的命令
-        5. sync: 是否同步输出,一般用于top这种需要持续输出的命令，如果为True，get_pty必须为True，不会停止输出，必须手动结束程序
-        6. isPrint: 是否打印输出,默认打印
+        5. isPrint: 是否打印输出,默认打印
     '''
 
     def execute_cmd(self, main_cmd, vl=[], hl=[], get_pty=False, isPrint=True, isPw=False):
