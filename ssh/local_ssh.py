@@ -34,18 +34,18 @@ class ssh_client(object):
         self._java_path = path
 
     # 查找Java路径
-    def find_java_path(self, cmd="which java"):
+    def find_java_path(self, cmd="bash -lc 'which java'"):
         virtual_path = self.execute_cmd(cmd, get_pty=True, isPrint=False)
         fd = virtual_path[0].find("->")
         if fd != -1:
-            virtual_path[0] = virtual_path[0][fd+3:] 
+            virtual_path[0] = virtual_path[0][fd+3:]
         if len(virtual_path) == 0:
             return None
         virtual_path[0] = virtual_path[0].strip('\r').strip(' ')
         if virtual_path[0] == "/usr/bin/java" or virtual_path[0] == "/etc/alternatives/java":
             return self.find_java_path("bash -lc 'ls -lrt " + virtual_path[0] + "'")
         else:
-            return virtual_path[0]
+            return virtual_path[0].strip('\r').strip(' ')
 
     '''
         1. main_cmd: 主命令
