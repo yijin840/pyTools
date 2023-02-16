@@ -28,6 +28,7 @@ class ssh_client(object):
         self._port = port
         self._password = password
         self._channel = self._ssh.get_transport().open_session()
+        self._java_path = self.find_java_path()
 
     # 设置Java路径
     def set_java_path(self, path):
