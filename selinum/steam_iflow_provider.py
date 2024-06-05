@@ -1,39 +1,16 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-
+import time
 url = "https://steam.iflow.work/?page_num=1&platforms=buff&games=csgo-dota2&sort_by=buy&min_price=1&max_price=5000&min_volume=2"
 user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36"
-
-
-# def get_button_href(): 
-#     # 使用 JavaScript 获取按钮元素并点击
-#     button_xpath = "/html/body/main/section/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[2]/td[11]/button"
-#     button_script = f"""
-#     var button = document.evaluate('{button_xpath}', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-#     button.click();
-#     """
-#     # 执行 JavaScript 代码
-#     driver.execute_script(button_script)
-#     # 等待一段时间确保页面加载完成
-#     time.sleep(2)
-#     current_window_handle = driver.current_window_handle
-#     # 获取所有窗口句柄
-#     all_window_handles = driver.window_handles
-#     # 切换到新打开的标签页
-#     new_window_handle = [handle for handle in all_window_handles if handle != current_window_handle][0]
-#     driver.switch_to.window(new_window_handle)
-
-#     current_url = driver.current_url
-#     print("当前页面的 URL:", current_url)
-
 
 class IflowClient:
     goods_arr = [
         ["#", "饰品名称", "游戏", "日成交量", "最低售价", "最优寄售", "最优求购", "稳定求购", "近期成交", "交易平台",
          "Steam链接", "更新时间"]]
 
-    def __init__(self, url, user_agent, time=2):
+    def __init__(self, url, user_agent, driver_path, time=2):
         self._url = url
         self._user_agent = user_agent
         self.time = time
@@ -49,22 +26,49 @@ class IflowClient:
         options.add_experimental_option('useAutomationExtension', False)
         options.add_argument("--disable-blink-features=AutomationControlled")
         # executable_path param is not needed if you updated PATH
-        service = Service(executable_path='../../resouces/chromedriver.exe')
+        service = Service(executable_path=driver_path)
         self.driver = webdriver.Chrome(options=options, service=service)
         self.load_goods()
 
     def load_goods(self):
-        self.driver.get(self._url)
-        html = self.driver.page_source
-        soup = BeautifulSoup(html, features="lxml")
-        table = soup.find_all("tbody", attrs={"class": "ant-table-tbody"})
-        for trx in range(1, len(table[0].find_all("tr"))):
-            tr = table[0].find_all("tr")[trx]
-            goods = []
-            for idx in range(1, len(tr.contents)):
-                content = tr.contents[idx]
-                goods.append(content.text)
-            self.goods_arr.append(goods)
+        try:
+            self.driver.get(self._url)
+            html = self.driver.page_source
+            soup = BeautifulSoup(html, features="lxml")
+            table = soup.find_all("tbody", attrs={"class": "ant-table-tbody"})
+            for trx in range(1, len(table[0].find_all("tr"))):
+                tr = table[0].find_all("tr")[trx]
+                self.get_btn_link(trx)
+                goods = []
+                for idx in range(1, len(tr.contents)):
+                    content = tr.contents[idx]
+                    goods.append(content.text)
+                self.goods_arr.append(goods)
+        except Exception as e:
+            print("load_goods error...")
+        
+    
+    def get_btn_link(self, idx):
+        # 使用 JavaScript 获取按钮元素并点击
+        button_xpath = f"/html/body/main/section/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[{idx+1}]/td[11]/button"
+        # print(button_xpath)
+        button_script = f"""
+        var button = document.evaluate('{button_xpath}', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        button.click();
+        console.log(button);
+        """
+        # 执行 JavaScript 代码
+        self.driver.execute_script(button_script)
+        # 等待一段时间确保页面加载完成
+        time.sleep(2)
+        current_window_handle = self.driver.current_window_handle
+        # 获取所有窗口句柄
+        all_window_handles = self.driver.window_handles
+        # 切换到新打开的标签页
+        new_window_handle = [handle for handle in all_window_handles if handle != current_window_handle][0]
+        self.driver.switch_to.window(new_window_handle)
+        current_url = self.driver.current_url
+        print(current_url)
 
     def start(self):
         #开始跑批
@@ -92,5 +96,5 @@ class IflowClient:
 
 
 if __name__ == "__main__":
-    iflow = IflowClient(url, user_agent)
-    iflow.print_opt()
+    iflow = IflowClient(url, user_agent, "pyTools/selinum/chromedriver")
+    # iflow.print_opt()
