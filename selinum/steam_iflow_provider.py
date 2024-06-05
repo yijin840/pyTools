@@ -28,23 +28,26 @@ class IflowClient:
         # executable_path param is not needed if you updated PATH
         service = Service(executable_path=driver_path)
         self.driver = webdriver.Chrome(options=options, service=service)
+        self.driver.get(self._url)
         self.load_goods()
 
     def load_goods(self):
         try:
-            self.driver.get(self._url)
+            time.sleep(2)
             html = self.driver.page_source
             soup = BeautifulSoup(html, features="lxml")
             table = soup.find_all("tbody", attrs={"class": "ant-table-tbody"})
             for trx in range(1, len(table[0].find_all("tr"))):
                 tr = table[0].find_all("tr")[trx]
-                self.get_btn_link(trx)
+                print(trx)
+                buff_url = self.get_btn_link(trx)
                 goods = []
                 for idx in range(1, len(tr.contents)):
                     content = tr.contents[idx]
                     goods.append(content.text)
+                goods.append(buff_url)
                 self.goods_arr.append(goods)
-        except Exception as e:
+        except:
             print("load_goods error...")
         
     
@@ -60,15 +63,19 @@ class IflowClient:
         # 执行 JavaScript 代码
         self.driver.execute_script(button_script)
         # 等待一段时间确保页面加载完成
-        time.sleep(2)
+        time.sleep(5)
         current_window_handle = self.driver.current_window_handle
         # 获取所有窗口句柄
         all_window_handles = self.driver.window_handles
+        old_window_handle = current_window_handle
         # 切换到新打开的标签页
         new_window_handle = [handle for handle in all_window_handles if handle != current_window_handle][0]
         self.driver.switch_to.window(new_window_handle)
         current_url = self.driver.current_url
+        #切换回来        
         print(current_url)
+        self.driver.switch_to.window(old_window_handle)
+        return current_url
 
     def start(self):
         #开始跑批
