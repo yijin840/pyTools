@@ -6,6 +6,28 @@ url = "https://steam.iflow.work/?page_num=1&platforms=buff&games=csgo-dota2&sort
 user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36"
 
 
+# def get_button_href(): 
+#     # 使用 JavaScript 获取按钮元素并点击
+#     button_xpath = "/html/body/main/section/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[2]/td[11]/button"
+#     button_script = f"""
+#     var button = document.evaluate('{button_xpath}', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+#     button.click();
+#     """
+#     # 执行 JavaScript 代码
+#     driver.execute_script(button_script)
+#     # 等待一段时间确保页面加载完成
+#     time.sleep(2)
+#     current_window_handle = driver.current_window_handle
+#     # 获取所有窗口句柄
+#     all_window_handles = driver.window_handles
+#     # 切换到新打开的标签页
+#     new_window_handle = [handle for handle in all_window_handles if handle != current_window_handle][0]
+#     driver.switch_to.window(new_window_handle)
+
+#     current_url = driver.current_url
+#     print("当前页面的 URL:", current_url)
+
+
 class IflowClient:
     goods_arr = [
         ["#", "饰品名称", "游戏", "日成交量", "最低售价", "最优寄售", "最优求购", "稳定求购", "近期成交", "交易平台",
