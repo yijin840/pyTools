@@ -9,7 +9,7 @@ class IflowClient:
     goods_arr = [
         ["#", "饰品名称", "游戏", "日成交量", "最低售价", "最优寄售", "最优求购", "稳定求购", "近期成交", "交易平台",
          "Steam链接", "更新时间"]]
-
+    goods = []
     def __init__(self, url, user_agent, driver_path, time=2):
         self._url = url
         self._user_agent = user_agent
@@ -39,18 +39,25 @@ class IflowClient:
             table = soup.find_all("tbody", attrs={"class": "ant-table-tbody"})
             for trx in range(1, len(table[0].find_all("tr"))):
                 tr = table[0].find_all("tr")[trx]
-                print(trx)
                 buff_url = self.get_btn_link(trx)
-                goods = []
+                self.goods = []
                 for idx in range(1, len(tr.contents)):
                     content = tr.contents[idx]
-                    goods.append(content.text)
-                goods.append(buff_url)
-                self.goods_arr.append(goods)
+                    self.goods.append(content.text)
+                self.goods.append(buff_url)
+                # self.goods_arr.append(goods)
+                return
         except:
             print("load_goods error...")
         
-    
+    def start(self):
+        while True:
+            if float(self.goods[6]) < 0.75:
+                print(self.goods)
+            time.sleep(2)
+            self.load_goods()
+            
+
     def get_btn_link(self, idx):
         # 使用 JavaScript 获取按钮元素并点击
         button_xpath = f"/html/body/main/section/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[{idx+1}]/td[11]/button"
@@ -73,15 +80,9 @@ class IflowClient:
         self.driver.switch_to.window(new_window_handle)
         current_url = self.driver.current_url
         #切换回来        
-        print(current_url)
+        # print(current_url)
         self.driver.switch_to.window(old_window_handle)
         return current_url
-
-    def start(self):
-        #开始跑批
-        # while True:
-
-        pass
 
     def print_goods(self):
         for goods in self.goods_arr:
@@ -104,4 +105,4 @@ class IflowClient:
 
 if __name__ == "__main__":
     iflow = IflowClient(url, user_agent, "pyTools/selinum/chromedriver")
-    # iflow.print_opt()
+    iflow.start()
