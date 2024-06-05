@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import time
+import requests
 url = "https://steam.iflow.work/?page_num=1&platforms=buff&games=csgo-dota2&sort_by=buy&min_price=1&max_price=5000&min_volume=2"
 user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36"
 
@@ -33,7 +34,7 @@ class IflowClient:
 
     def load_goods(self):
         try:
-            time.sleep(2)
+            time.sleep(5)
             html = self.driver.page_source
             soup = BeautifulSoup(html, features="lxml")
             table = soup.find_all("tbody", attrs={"class": "ant-table-tbody"})
@@ -52,11 +53,24 @@ class IflowClient:
         
     def start(self):
         while True:
-            if float(self.goods[6]) < 0.75:
+            if float(self.goods[6]) < 0.70:
                 print(self.goods)
-            time.sleep(2)
+                self.push_message()
+            time.sleep(10)
             self.load_goods()
-            
+    
+    def push_message(self):
+        if(lastGoodsName == self.goods[1]):
+            return
+        lastGoodsName = self.goods[1]
+        desp = '\n'.join(f'* {item}' for item in self.goods)
+        data = {
+            'title': f"{self.goods[1]}",
+            'desp': desp
+        }
+        url=f"https://sctapi.ftqq.com/%s.send"
+        resp = requests.post(url, data=data)
+        print(resp.content.decode("utf-8"))
 
     def get_btn_link(self, idx):
         # 使用 JavaScript 获取按钮元素并点击
